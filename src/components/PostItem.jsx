@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProcItem = (props) => {
+const PostItem = (props) => {
     return (
         <div className="post">
             <div className="post__content">
@@ -17,4 +17,4 @@ const ProcItem = (props) => {
     )
 }
 
-export default ProcItem;
+export default PostItem;
