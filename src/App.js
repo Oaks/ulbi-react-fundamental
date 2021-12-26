@@ -7,14 +7,14 @@ import MyInput from './components/UI/input/MyInput';
 
 function App() {
     const [posts, setPosts] = useState([
-        {id: 1, title: "Javascript", body: "Description"},
-        {id: 2, title: "Javascript 2", body: "Description"},
-        {id: 3, title: "Javascript 3", body: "Description"}
+        // {id: 1, title: "Javascript", body: "Description"},
+        // {id: 2, title: "Javascript 2", body: "Description"},
+        // {id: 3, title: "Javascript 3", body: "Description"}
 
 
-        // {id: 1, title: "аа", body: "щщ"},
-        // {id: 2, title: "гг", body: "фф"},
-        // {id: 3, title: "бб", body: "яяя"}
+        {id: 1, title: "аа", body: "щщ"},
+        {id: 2, title: "гг", body: "фф"},
+        {id: 3, title: "бб", body: "яяя"}
     ]
     )
     const [selectedSort, setSelectedSort] = useState("");
@@ -22,10 +22,14 @@ function App() {
 
     const sortedPosts = useMemo(() => {
         if (selectedSort) {
-            return setPosts([...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort])));
+            return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
         }
         return posts;
     }, [selectedSort, posts])
+
+    const sortedAndSearchedPosts = useMemo(() => {
+        return sortedPosts.filter(post => post.title.toLowerCase().includes(searchQuery));
+    }, [searchQuery, sortedPosts])
 
     const createPost = (post) => {
         setPosts([...posts, post]);
@@ -61,7 +65,7 @@ function App() {
             />
             {
                 posts.length
-                    ? <PostList remove={removePost} posts={sortedPosts} title="Список постов" />
+                    ? <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Список постов" />
                     : <h1 style={{textAlign: "center"}}>
                         Посты не найдены
                     </h1>
