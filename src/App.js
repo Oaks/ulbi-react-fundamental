@@ -64,7 +64,7 @@ function App() {
                 ]}
             />
             {
-                posts.length
+                sortedAndSearchedPosts.length
                     ? <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Список постов" />
                     : <h1 style={{textAlign: "center"}}>
                         Посты не найдены
