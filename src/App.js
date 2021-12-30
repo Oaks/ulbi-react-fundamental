@@ -32,7 +32,7 @@ function App() {
 
     useEffect(() => {
         fetchPosts()
-    }, [])
+    }, [page])
 
     const createPost = (post) => {
         setPosts([...posts, post]);
@@ -45,7 +45,6 @@ function App() {
 
     const changePage = (page) => {
         setPage(page)
-        fetchPosts()
     }
 
     return (
