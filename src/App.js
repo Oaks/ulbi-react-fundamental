@@ -22,7 +22,7 @@ function App() {
 
     let pagesArray = getPagesArray(totalPages)
 
-    const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
+    const [fetchPosts, isPostsLoading, postError] = useFetching(async (limit, page) => {
         const response = await PostService.getAll(limit, page)
         setPosts(response.data)
         const totalCount = response.headers["x-total-count"]
@@ -31,8 +31,8 @@ function App() {
     })
 
     useEffect(() => {
-        fetchPosts()
-    }, [page])
+        fetchPosts(limit, page)
+    }, [])
 
     const createPost = (post) => {
         setPosts([...posts, post]);
@@ -45,6 +45,7 @@ function App() {
 
     const changePage = (page) => {
         setPage(page)
+        fetchPosts(limit, page)
     }
 
     return (
