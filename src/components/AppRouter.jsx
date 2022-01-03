@@ -5,12 +5,12 @@ import {routes} from '../router';
 const AppRouter = () => {
     return (
         <Switch>
-            {routes.map((route, index) =>
+            {routes.map(route =>
                 <Route
                     path={route.path}
                     component={route.component}
                     exact={route.exact}
-                    key={index}
+                    key={route.path}
                 />
             )}
         </Switch>
