@@ -1,19 +1,36 @@
 import React from "react";
-import {Route, Switch} from 'react-router-dom';
-import {routes} from '../router';
+import {Route, Switch, Redirect} from 'react-router-dom';
+import {publicRoutes, privateRoutes} from '../router';
 
 const AppRouter = () => {
+    const isAuth = true;
+
     return (
-        <Switch>
-            {routes.map(route =>
-                <Route
-                    path={route.path}
-                    component={route.component}
-                    exact={route.exact}
-                    key={route.path}
-                />
-            )}
-        </Switch>
+        isAuth
+            ?
+            <Switch>
+                {privateRoutes.map(route =>
+                    <Route
+                        path={route.path}
+                        component={route.component}
+                        exact={route.exact}
+                        key={route.path}
+                    />
+                )}
+                <Redirect to="posts" />
+            </Switch>
+            :
+            <Switch>
+                {publicRoutes.map(route =>
+                    <Route
+                        path={route.path}
+                        component={route.component}
+                        exact={route.exact}
+                        key={route.path}
+                    />
+                )}
+                <Redirect to="login" />
+            </Switch>
     )
 }
 
