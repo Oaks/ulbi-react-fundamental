@@ -18,7 +18,7 @@ const AppRouter = () => {
                         key={route.path}
                     />
                 )}
-                <Redirect to="posts" />
+                <Redirect to="/posts" />
             </Switch>
             :
             <Switch>
@@ -30,7 +30,7 @@ const AppRouter = () => {
                         key={route.path}
                     />
                 )}
-                <Redirect to="login" />
+                <Redirect to="/login" />
             </Switch>
     )
 }
